@@ -1,0 +1,52 @@
+version: '3'
+services:
+  mas:
+    image: caapim/gateway:10.0.00
+    hostname: gw2.10.aricday.net
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+    volumes:
+      - /opt/SecureSpan/Gateway/node/default/etc/bootstrap/services/restman
+      - ${PWD}/config/license.xml:/opt/SecureSpan/Gateway/node/default/etc/bootstrap/license/license.xml
+#      - ${PWD}/config/mag_license.xml:/opt/SecureSpan/Gateway/node/default/etc/bootstrap/license/mag_license.xml
+      - ${PWD}/files/otk/bundles/oauth_cassandra.bundle:/opt/SecureSpan/Gateway/node/default/etc/bootstrap/bundle/02_oauth_cassandra.bundle
+      - ${PWD}/files/otk/bundles/oauth_jdbc.bundle:/opt/SecureSpan/Gateway/node/default/etc/bootstrap/bundle/04_oauth_jdbc.bundle
+#      - ${PWD}/files/otk/bundles/otk_schema.bundle:/opt/SecureSpan/Gateway/node/default/etc/bootstrap/bundle/05_otk_schema.bundle
+#      - ${PWD}/files/papim/papim-3.4.33.bundle:/opt/SecureSpan/Gateway/node/default/etc/bootstrap/bundle/07_papim-3.4.33.bundle
+#      - ${PWD}/files/papim/apm-cluster-property.bundle:/opt/SecureSpan/Gateway/node/default/etc/bootstrap/bundle/08_apm-cluster-property.bundle
+    environment:
+      SSG_CLUSTER_HOST: "gw2.10.aricday.net"
+      SSG_CLUSTER_PASSWORD: "7layer"
+      SSG_DATABASE_USER: "gateway"
+      SSG_DATABASE_PASSWORD: "7layer"
+      SSG_DATABASE_JDBC_URL: "jdbc:mysql://mysql:3306/ssg?useSSL=false"
+      SSG_ADMIN_USERNAME: "admin"
+      SSG_ADMIN_PASSWORD: "CAdemo123"
+      ACCEPT_LICENSE: "true"
+      SSG_SSL_KEY: "${MAS_SSL_KEY_B64}"
+      SSG_SSL_KEY_PASS: "${MAS_SSL_KEY_PASS}"
+      MSGW_SSL_PUBLIC_CERT_B64:
+      SSG_JVM_HEAP: "6g"
+      EXTRA_JAVA_ARGS: "-XX:ParallelGCThreads=4 -Dcom.l7tech.bootstrap.autoTrustSslKey=trustAnchor,TrustedFor.SSL,TrustedFor.SAML_ISSUER -Dcom.l7tech.service.metrics.enabled=false"
+  mysql:
+    image: mysql:8.0
+    environment:
+      - SERVICE_IGNORE=yes
+      - MYSQL_ROOT_PASSWORD=7layer
+      - MYSQL_USER=gateway
+      - MYSQL_PASSWORD=7layer
+      - MYSQL_DATABASE=ssg
+    command:
+      - "--character-set-server=utf8mb3"
+      - "--innodb_log_buffer_size=32M"
+      - "--innodb_log_file_size=80M"
+      - "--max_allowed_packet=20M"
+      - "--log-bin-trust-function-creators=1"
+      - "--default-authentication-plugin=mysql_native_password"
+    volumes:
+      - mag-otk-data:/var/lib/mysql
+      #- ${PWD}/files/mysql_dir:/var/lib/mysql
+      - ${PWD}/files/otk/dbinit:/docker-entrypoint-initdb.d
+volumes:
+  mag-otk-data:

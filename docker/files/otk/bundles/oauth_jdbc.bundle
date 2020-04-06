@@ -1,0 +1,42 @@
+      <l7:Bundle xmlns:l7="http://ns.l7tech.com/2010/04/gateway-management">
+         <l7:References>
+            <l7:Item>
+               <l7:Name>OAuth</l7:Name>
+               <l7:Id>175ace8f404dd47c8cefe0a762271542</l7:Id>
+               <l7:Type>JDBC_CONNECTION</l7:Type>
+               <l7:TimeStamp>2020-04-06T16:55:31.067Z</l7:TimeStamp>
+               <l7:Resource>
+                  <l7:JDBCConnection id="175ace8f404dd47c8cefe0a762271542" version="0">
+                     <l7:Name>OAuth</l7:Name>
+                     <l7:Enabled>true</l7:Enabled>
+                     <l7:Properties>
+                        <l7:Property key="maximumPoolSize">
+                           <l7:IntegerValue>15</l7:IntegerValue>
+                        </l7:Property>
+                        <l7:Property key="minimumPoolSize">
+                           <l7:IntegerValue>3</l7:IntegerValue>
+                        </l7:Property>
+                     </l7:Properties>
+                     <l7:Extension>
+                        <l7:DriverClass>com.l7tech.jdbc.mysql.MySQLDriver</l7:DriverClass>
+                        <l7:JdbcUrl>jdbc:mysql://mysql:3306/otk_db</l7:JdbcUrl>
+                        <l7:ConnectionProperties>
+                           <l7:Property key="EnableCancelTimeout">
+                              <l7:StringValue>true</l7:StringValue>
+                           </l7:Property>
+                           <l7:Property key="password">
+                                <l7:StringValue>7layer</l7:StringValue>
+                            </l7:Property>
+                           <l7:Property key="user">
+                              <l7:StringValue>otk_user</l7:StringValue>
+                           </l7:Property>
+                        </l7:ConnectionProperties>
+                     </l7:Extension>
+                  </l7:JDBCConnection>
+               </l7:Resource>
+            </l7:Item>
+         </l7:References>
+         <l7:Mappings>
+            <l7:Mapping action="NewOrExisting" srcId="175ace8f404dd47c8cefe0a762271542" srcUri="https://gw1.10.aricday.net:8443/restman/1.0/jdbcConnections/175ace8f404dd47c8cefe0a762271542" type="JDBC_CONNECTION"/>
+         </l7:Mappings>
+      </l7:Bundle>
