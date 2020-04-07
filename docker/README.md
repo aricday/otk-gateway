@@ -12,7 +12,7 @@ Default environment variables are in the [.env](.env) file that is automatically
 
 Start the main application via the **make** command. The default option is the *run* command (docker-compose -f docker-compose.yml up -d --force-recreate). 
 ```
-	$ make
+    $ make
 ```
 
 You can tail the logs in this terminal via *make log* or open a new one (docker-compose -f docker-compose.yml logs -f)
