@@ -1,4 +1,4 @@
-# Gateway Install w/PAPIM - OTK - MAG
+# Gateway Headless Install - OTK / MAG
 
 ### <a name="configuration"></a>Configuration:
 
@@ -10,13 +10,15 @@ Default environment variables are in the [.env](.env) file that is automatically
 
 ### <a name="bootstrap"></a>Bootstrap: 
 
-Start the main application via the **make** command. The default option is the *run* command (docker-compose -f docker-compose.yml up -d --force-recreate). You can tail the logs in this terminal via *make log* or open a new one (docker-compose -f docker-compose.yml logs -f)
+Start the main application via the **make** command. The default option is the *run* command (docker-compose -f docker-compose.yml up -d --force-recreate). 
 ```
 	$ make
-    
-    $ make log
 ```
 
+You can tail the logs in this terminal via *make log* or open a new one (docker-compose -f docker-compose.yml logs -f)
+```
+    $ make log
+```
 
 ## <a name="OTK"></a>OTK:
 
