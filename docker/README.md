@@ -13,13 +13,17 @@ Default environment variables are in the [.env](.env) file that is automatically
 Start the main application via the **make** command. The default option is the *run* command (docker-compose -f docker-compose.yml up -d --force-recreate). You can tail the logs in this terminal via *make log* or open a new one (docker-compose -f docker-compose.yml logs -f)
 ```
 	make
+    make log
 ```
+
+
 
 ## <a name="OTK"></a>OTK:
 
+Once the gateway is up and running execute the following curl command to install the OTK via RESTman.
 ```
     #call the RESTMAN API to install OTK
-    $ curl -u $SSG_ADMIN_USERNAME:$SSG_ADMIN_PASSWORD --insecure -X POST -k -H 'Content-Type: multipart/form-data' --form entityIdReplace=4432207d16a1b505e8a6ed59993eaa24::175ace8f404dd47c8cefe0a762271542 --form entityIdReplace=c2e0825b2f52dc7819cd6e68893df156::8e7af8f5fe78af7719574812da0b3c8e --form "file=@files/otk/OTK_Installers/OAuthSolutionKit-4.3.1-4141.sskar" -s -D - https://localhost:8443/restman/1.0/solutionKitManagers
+    $ curl -u $SSG_ADMIN_USERNAME:$SSG_ADMIN_PASSWORD --insecure -X POST -k -H 'Content-Type: multipart/form-data' --form entityIdReplace=4432207d16a1b505e8a6ed59993eaa24::175ace8f404dd47c8cefe0a762271542 --form entityIdReplace=c2e0825b2f52dc7819cd6e68893df156::8e7af8f5fe78af7719574812da0b3c8e --form "file=@files/otk/OTK_Installers/OAuthSolutionKit-4.4.0-4346.sskar" -s -D - https://localhost:8443/restman/1.0/solutionKitManagers
     
     HTTP/1.1 100 Continue
 
@@ -37,6 +41,8 @@ Start the main application via the **make** command. The default option is the *
 
 ## <a name="development"></a>Development:
 
+To generate your own certificates with desirted hostname, ues the following steps to replace existing certs/keys.
+
 ### Custom certificates:
 
 Create custom x509 server certificates and keys for the MAS/OTK services. This requires **openssl** to be installed on your local system.
@@ -51,6 +57,8 @@ Convert the PEM certificate to PKCS12:
 
 
 ## <a name="Teardown"></a>Teardown:
+
+To stop the container and teardown.
 
 ### <a name="clean-all"></a>clean-all: 
 
