@@ -18,4 +18,4 @@ VALUES
 	('Ballast Point Brewing Company', 'IPA - American', 6.95, 'Grapefruit Sculpin'),
 	('Ballast Point Brewing Company', 'IPA - American', 6.95, 'Pineapple Sculpin'),
 	('Russian River Brewing Company', 'IPA - Imperial / Double', 6.95, 'Pliny the Elder'),
-	('Aric Brewing', 'Hefeweizen', 5.95, 'AricDay Hefe'),
+	('Aric Brewing', 'Hefeweizen', 5.95, 'AricDay Hefe')
