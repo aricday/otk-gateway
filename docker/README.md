@@ -41,7 +41,7 @@ Once the gateway is up and running execute the following curl command to install
     
     ---
     #call the RESTMAN API to install MAG
-    $ curl -u $SSG_ADMIN_USERNAME:$SSG_ADMIN_PASSWORD --insecure -X POST -k -H 'Content-Type: multipart/form-data' --form entityIdReplace=cbeedf1e2650e80f4d660a7fdb8fea13::175ace8f404dd47c8cefe0a762271543 --form entityIdReplace=5a97f3bdcbc049ccaebbe9ccb8379ccb::8e7af8f5fe78af7719574812da0b3c8e --form "file=@files/otk/MAG_Installers/MAGSolutionKit-4.2.00-2716.sskar" -s -D - https://localhost:8443/restman/1.0/solutionKitManagers
+    $ curl -u admin:CAdemo123 --insecure -X POST -k -H 'Content-Type: multipart/form-data' --form entityIdReplace=cbeedf1e2650e80f4d660a7fdb8fea13::175ace8f404dd47c8cefe0a762271542 --form entityIdReplace=5a97f3bdcbc049ccaebbe9ccb8379ccb::8e7af8f5fe78af7719574812da0b3c8e --form "file=@//Users/aricday/Projects/PublicGithub/otk-gateway/docker/files/otk/MAG_Installers/MAGSolutionKit-4.2.00-2716.sskar" -s -D - https://gw2.10.aricday.net:8443/restman/1.0/solutionKitManagers
     ---
 ```
 
