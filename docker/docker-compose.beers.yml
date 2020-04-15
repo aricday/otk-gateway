@@ -1,0 +1,44 @@
+################################################################################
+##
+##  Purpose: Define a miroservice for retrieving beer data from mysql db
+##
+##  Email: aric.day@ca.com
+##
+################################################################################
+version: '3'
+services:
+  lac:
+    build:
+      context: ./files/lac
+      dockerfile: Dockerfile
+    ports:
+    - "80:8080"
+    environment:
+      - RDS_HOSTNAME=lac_mysql
+      - RDS_PORT=3306
+      - RDS_DB_NAME=lac_admin
+      - RDS_USERNAME=lac_admin
+      - RDS_PASSWORD=CAdemo123
+      - CA_ACCEPT_LICENSE=ENU
+      - LAC_DEFAULT_LICENSE_FILE=/usr/local/tomcat/bin/lac_license.json
+    volumes:
+      - ${PWD}/files/lac/beer_export.json:/usr/local/tomcat/bin/beer_export.json
+      - ${PWD}/config/lac_license.json:/usr/local/tomcat/bin/lac_license.json
+      - ${PWD}/files/lac/import_data.sh:/usr/local/tomcat/bin/import_data.sh
+      - ${PWD}/files/lac/StartLiveAPICreator.sh:/usr/local/tomcat/bin/StartLiveAPICreator.sh
+  lac_mysql:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=lac_admin
+      - MYSQL_USER=lac_admin
+      - MYSQL_PASSWORD=CAdemo123
+    restart: always
+  mysql_beers:
+    image: mysql:5.7.9
+    environment:
+      - SERVICE_IGNORE=yes
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - ${PWD}/files/mysql_beers:/docker-entrypoint-initdb.d
+    restart: always

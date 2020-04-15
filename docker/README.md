@@ -13,6 +13,10 @@ Default environment variables are in the [.env](.env) file that is automatically
 Start the main application via the **make** command. The default option is the *run* command (docker-compose -f docker-compose.yml up -d --force-recreate). 
 ```
     $ make
+    
+    $ make beers
+    
+    $ make run-beers
 ```
 
 You can tail the logs in this terminal via *make log* or open a new one (docker-compose -f docker-compose.yml logs -f)
@@ -25,7 +29,7 @@ You can tail the logs in this terminal via *make log* or open a new one (docker-
 Once the gateway is up and running execute the following curl command to install the OTK via RESTman.
 ```
     #call the RESTMAN API to install OTK
-    $ curl -u $SSG_ADMIN_USERNAME:$SSG_ADMIN_PASSWORD --insecure -X POST -k -H 'Content-Type: multipart/form-data' --form entityIdReplace=4432207d16a1b505e8a6ed59993eaa24::175ace8f404dd47c8cefe0a762271542 --form entityIdReplace=c2e0825b2f52dc7819cd6e68893df156::8e7af8f5fe78af7719574812da0b3c8e --form "file=@files/otk/OTK_Installers/OAuthSolutionKit-4.4.0-4346.sskar" -s -D - https://localhost:8443/restman/1.0/solutionKitManagers
+    $ curl -u admin:CAdemo123 --insecure -X POST -k -H 'Content-Type: multipart/form-data' --form entityIdReplace=4432207d16a1b505e8a6ed59993eaa24::175ace8f404dd47c8cefe0a762271542 --form entityIdReplace=c2e0825b2f52dc7819cd6e68893df156::8e7af8f5fe78af7719574812da0b3c8e --form "file=@//Users/aricday/Projects/PublicGithub/otk-gateway/docker/files/otk/OTK_Installers/OAuthSolutionKit-4.4.0-4346.sskar" -s -D - https://localhost:8443/restman/1.0/solutionKitManagers
     
     HTTP/1.1 100 Continue
 
@@ -67,5 +71,5 @@ To stop the container and teardown.
 Stop the application stack via the **make** command. The default option is the *clean* command (source .custom.env; docker-compose -f docker-compose.yml stop && docker-compose -f docker-compose.yml rm -f && docker volume prune -f). 
 
 ```
-  $ make clean
+  $ make clean-all
 ```

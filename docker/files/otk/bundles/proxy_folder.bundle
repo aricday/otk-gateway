@@ -82,7 +82,7 @@ ${request.url.protocol}://${request.url.host}:${request.url.port}/rest/default/d
             &lt;L7p:Level stringValue=&quot;WARNING&quot;/&gt;
         &lt;/L7p:AuditDetailAssertion&gt;
         &lt;L7p:HttpRoutingAssertion&gt;
-            &lt;L7p:ProtectedServiceUrl stringValue=&quot;https://lac.day.apim.ca.com:8083/rest/default/data/v1${regex[1]}&quot;/&gt;
+            &lt;L7p:ProtectedServiceUrl stringValue=&quot;http://lac:8080/rest/default/data/v1${regex[1]}&quot;/&gt;
             &lt;L7p:ProxyPassword stringValueNull=&quot;null&quot;/&gt;
             &lt;L7p:ProxyUsername stringValueNull=&quot;null&quot;/&gt;
             &lt;L7p:RequestHeaderRules httpPassthroughRuleSet=&quot;included&quot;&gt;
@@ -117,7 +117,7 @@ ${request.url.protocol}://${request.url.host}:${request.url.port}/rest/default/d
         &lt;L7p:Regex&gt;
             &lt;L7p:AutoTarget booleanValue=&quot;false&quot;/&gt;
             &lt;L7p:IncludeEntireExpressionCapture booleanValue=&quot;false&quot;/&gt;
-            &lt;L7p:Regex stringValue=&quot;https://lac.day.apim.ca.com:8083/rest/default/data/v1&quot;/&gt;
+            &lt;L7p:Regex stringValue=&quot;http://lac:8080/rest/default/data/v1&quot;/&gt;
             &lt;L7p:RegexName stringValue=&quot;rewrite responses&quot;/&gt;
             &lt;L7p:Replace booleanValue=&quot;true&quot;/&gt;
             &lt;L7p:Replacement stringValue=&quot;${request.url.protocol}://${request.url.host}:${request.url.port}/internal/direct/beers&quot;/&gt;

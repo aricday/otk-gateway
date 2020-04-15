@@ -12,6 +12,7 @@ services:
 #      - ${PWD}/config/mag_license.xml:/opt/SecureSpan/Gateway/node/default/etc/bootstrap/license/mag_license.xml
       - ${PWD}/files/otk/bundles/oauth_cassandra.bundle:/opt/SecureSpan/Gateway/node/default/etc/bootstrap/bundle/02_oauth_cassandra.bundle
       - ${PWD}/files/otk/bundles/oauth_jdbc.bundle:/opt/SecureSpan/Gateway/node/default/etc/bootstrap/bundle/04_oauth_jdbc.bundle
+      - ${PWD}/files/otk/bundles/proxy_folder.bundle:/opt/SecureSpan/Gateway/node/default/etc/bootstrap/bundle/06_proxy_folder.bundle
 #      - ${PWD}/files/otk/bundles/otk_schema.bundle:/opt/SecureSpan/Gateway/node/default/etc/bootstrap/bundle/05_otk_schema.bundle
 #      - ${PWD}/files/papim/papim-3.4.33.bundle:/opt/SecureSpan/Gateway/node/default/etc/bootstrap/bundle/07_papim-3.4.33.bundle
 #      - ${PWD}/files/papim/apm-cluster-property.bundle:/opt/SecureSpan/Gateway/node/default/etc/bootstrap/bundle/08_apm-cluster-property.bundle
@@ -45,8 +46,8 @@ services:
       - "--log-bin-trust-function-creators=1"
       - "--default-authentication-plugin=mysql_native_password"
     volumes:
-      - mag-otk-data:/var/lib/mysql
-      #- ${PWD}/files/mysql_dir:/var/lib/mysql
+#      - mag-otk-data:/var/lib/mysql
+      - ${PWD}/files/mysql_dir:/var/lib/mysql
       - ${PWD}/files/otk/dbinit:/docker-entrypoint-initdb.d
-volumes:
-  mag-otk-data:
+#volumes:
+#  mag-otk-data:
